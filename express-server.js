@@ -31,6 +31,12 @@ app.get('/urls', (req, res) => {
   res.render('urls_index', templateVars);
 });
 
+// NEW
+app.get("/urls/new", (req, res) => {
+  res.render("urls_new");
+});
+
+
 // SHOW -- display only the url I click on, alone on the page
 app.get('/urls/:shortURL', (req, res) => {
   let templateVars = {
