@@ -1,7 +1,9 @@
 const PORT = 8080;
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 //=====================================================
@@ -12,15 +14,7 @@ const urlDatabase = {
 };
 
 app.get('/', (req, res) => {
-  res.send('Hello!');
-});
-
-app.get('/urls.json', (req, res) => {
-  res.json(urlDatabase);
-});
-
-app.get("/hello", (req, res) => {
-  res.send('<html><body>Hello <b>World</b></body></html>\n');
+  res.redirect('/urls');
 });
 
 // INDEX -- show all urls
@@ -32,9 +26,14 @@ app.get('/urls', (req, res) => {
 });
 
 // NEW
-app.get("/urls/new", (req, res) => {
-  res.render("urls_new");
+app.get('/urls/new', (req, res) => {
+  res.render('urls_new');
 });
+
+app.post('/urls', (req, res) => {
+  console.log(req.body);
+  res.send('Ok')
+})
 
 
 // SHOW -- display only the url I click on, alone on the page
