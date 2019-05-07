@@ -31,6 +31,16 @@ app.get('/urls', (req, res) => {
   res.render('urls_index', templateVars);
 });
 
+// SHOW -- display only the url I click on, alone on the page
+app.get('/urls/:shortURL', (req, res) => {
+  let templateVars = {
+    shortURL: req.params.shortURL,
+    longURL: urlDatabase[req.params.shortURL]
+  };
+  res.render('urls_show', templateVars)
+  // console.log(req.params.shortURL)
+  // console.log(urlDatabase[req.params.shortURL])
+  });
 
 
 
