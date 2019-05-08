@@ -6,17 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <title>TinyApp</title>
 </head>
+
 <body style="font-size:20px; padding:50px;">
 
-  <h1>TinyApp</h1>
-  <hr>
-  <a href="#">Create a new short URL</a>
-    <!-- Add EJS code here -->
-<!-- </body>
-</html> -->
+<h1>TinyApp</h1>
+<hr>
+<!-- if the user is logged in display "Logged in as: + username" -->
+
+<% if(!username) { %>
+<form class="form-inline" action="/login" method="POST">
+      <div class="form-group mb-2">
+        <input class="form-control" type="text" name="username" placeholder="username" value="" style="width: 300px; margin: 1em">
+        <button type="submit" class="btn btn-primary btn-sm">Login</button>
+      </div>
+    </form>
+<!-- <!if the user is not logged in display "this form below" -->
+<% } else { %>
+      <h3>Logged in as: <%= username %></h3>
+      <form class="form-inline" action="/logout" method="POST">
+        <div class="form-group mb-2">
+          <button type="submit" class="btn btn-primary btn-sm">Log out</button>
+        </div>
+      </form>
+<% } %>
+
+<hr>
 
 
 
