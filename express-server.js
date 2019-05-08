@@ -12,7 +12,7 @@ const urlDatabase = {
   'b2xVn2': 'http://www.lighthouselabs.ca',
   '9sm5xK': 'http://www.google.com'
 };
-console.log(urlDatabase);
+// console.log(urlDatabase);
 
 app.get('/', (req, res) => {
   res.redirect('/urls');
@@ -55,6 +55,14 @@ app.get('/urls/:shortURL', (req, res) => {
 app.get('/u/:shortURL', (req, res) => {
   const longURL = urlDatabase[req.params.shortURL];
   res.redirect(`http://${longURL}`);
+});
+
+// DELETE
+app.post('/urls/:shortURL/delete', (req, res) => {
+  console.log(req.params.shortURL)
+  delete urlDatabase[req.params.shortURL];
+
+  res.redirect('/urls');
 });
 
 // generate random 6 characters and numbers

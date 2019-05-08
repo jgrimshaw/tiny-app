@@ -5,9 +5,23 @@
   <% for (let url in urls) { %>
   <tr>
     <td><b><%= `${url}:` %></b> <%= `${urls[url]}` %></td>
-  </tr>
-<% } %>
 
+  <!-- delete -->
+  <td>
+  <form method="POST" class="inline-form" action="/urls/b2xVn2/delete">
+    <button style="margin-left: 20px;" type="submit" class="btn btn-primary btn-sm">Delete</button>
+  </form>
+  </td>
+  <!-- delete -->
+  </tr>
+
+
+<td>
+
+</td>
+
+
+<% } %>
 </table>
 
 
