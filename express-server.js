@@ -36,7 +36,7 @@ app.post('/urls', (req, res) => {
   // console.log(longURL);
   // console.log(shortURL);
   // console.log(req.body);
-  res.redirect(`/urls/${shortURL}`)
+  res.redirect('/urls/')
 })
 
 
@@ -54,15 +54,15 @@ app.get('/urls/:shortURL', (req, res) => {
 // send user to the long url ex.lighthouselabs.ca by typing in the browser --  http://localhost:8080/u/b2xVn2
 app.get('/u/:shortURL', (req, res) => {
   const longURL = urlDatabase[req.params.shortURL];
-  res.redirect(`http://${longURL}`);
+  res.redirect(longURL);
 });
 
-// EDIT
-app.post('/urls/:id', (req, res) => {
-  urlDatabase[req.params.shortURL] = req.body.newURL;
+//EDIT
+app.post('/edit/:shortURL', (req, res) => {
+  urlDatabase[req.params.shortURL] = req.body.newURL
   console.log(urlDatabase)
-  res.redirect('/urls')
-})
+  res.redirect('/urls');
+});
 
 // DELETE
 app.post('/urls/:shortURL/delete', (req, res) => {

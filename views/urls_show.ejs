@@ -1,12 +1,14 @@
 <%- include ./partials/_header.ejs %>
 
-<h4>shortURL: <b><%= shortURL %></b></p>
+<h4>shortURL: <b><%=shortURL%></b></h4>
 
+    <form  action=<%='/edit/'+ shortURL %> method="POST">
+      <label> URL:  </label>
+      <input size="35" type="url" name="newURL" value="<%=longURL%>">
 
-<form>
-  <input input class="form-control" type="text" name="longURL" value="<%= `${longURL}` %>" style="width: 300px;">
-  <button type="submit" class="btn btn-primary btn-sm">Update</button>
-</form>
+      <button class="btn btn-primary btn-sm" type='submit'>Update</button>
+    </form>
+
 
 </body>
 </html>
