@@ -12,6 +12,7 @@ const urlDatabase = {
   'b2xVn2': 'http://www.lighthouselabs.ca',
   '9sm5xK': 'http://www.google.com'
 };
+console.log(urlDatabase);
 
 app.get('/', (req, res) => {
   res.redirect('/urls');
@@ -19,9 +20,7 @@ app.get('/', (req, res) => {
 
 // INDEX -- show all urls
 app.get('/urls', (req, res) => {
-  let templateVars = {
-    urls: urlDatabase
-  };
+  let templateVars = {urls: urlDatabase};
   res.render('urls_index', templateVars);
 });
 
@@ -52,6 +51,11 @@ app.get('/urls/:shortURL', (req, res) => {
   // console.log(urlDatabase[req.params.shortURL])
   });
 
+// send user to the long url ex.lighthouselabs.ca by typing in the browser --  http://localhost:8080/u/b2xVn2
+app.get('/u/:shortURL', (req, res) => {
+  const longURL = urlDatabase[req.params.shortURL];
+  res.redirect(`http://${longURL}`);
+});
 
 // generate random 6 characters and numbers
 function generateRandomString() {
