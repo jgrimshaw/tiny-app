@@ -48,9 +48,12 @@ app.get('/urls/:shortURL', (req, res) => {
   });
 
 
-
-
-
+// generate random 6 characters and numbers
+function generateRandomString() {
+ Math.floor(Math.random()*899999+100000);
+  const result = Math.random().toString(36).slice(-6);
+  return result;
+}
 
 //=== SERVER =========================================
 app.listen(PORT, () => {
