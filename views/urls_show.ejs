@@ -1,8 +1,14 @@
 <%- include ./partials/_header.ejs %>
 
-<p>Tiny URL for: <%= longURL %></p>
-<p><b><%= shortURL %></b></p>
+<h4>shortURL: <b><%= shortURL %></b></p>
 
+
+<form>
+  <input input class="form-control" type="text" name="longURL" value="<%= `${longURL}` %>" style="width: 300px;">
+  <button type="submit" class="btn btn-primary btn-sm">Update</button>
+</form>
 
 </body>
 </html>
+
+

@@ -8,7 +8,8 @@
 
   <!-- delete -->
   <td>
-  <form method="POST" class="inline-form" action="/urls/b2xVn2/delete">
+  <form method="POST" class="inline-form" action=<%=`/urls/${url}/delete`%>>
+    <a href= <%='/urls/'+url %> >Edit</a>
     <button style="margin-left: 20px;" type="submit" class="btn btn-primary btn-sm">Delete</button>
   </form>
   </td>

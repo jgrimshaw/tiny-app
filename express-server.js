@@ -57,13 +57,21 @@ app.get('/u/:shortURL', (req, res) => {
   res.redirect(`http://${longURL}`);
 });
 
+// EDIT
+app.post('/urls/:id', (req, res) => {
+  urlDatabase[req.params.shortURL] = req.body.newURL;
+  console.log(urlDatabase)
+  res.redirect('/urls')
+})
+
 // DELETE
 app.post('/urls/:shortURL/delete', (req, res) => {
-  console.log(req.params.shortURL)
   delete urlDatabase[req.params.shortURL];
-
   res.redirect('/urls');
 });
+
+
+
 
 // generate random 6 characters and numbers
 function generateRandomString() {
@@ -71,6 +79,9 @@ function generateRandomString() {
   const result = Math.random().toString(36).slice(-6);
   return result;
 }
+
+
+
 
 //=== SERVER =========================================
 app.listen(PORT, () => {
