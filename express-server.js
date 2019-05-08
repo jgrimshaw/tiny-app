@@ -27,7 +27,7 @@ app.get('/urls', (req, res) => {
     urls: urlDatabase,
     username: req.cookies['username']
   };
-  res.render('urls_index', templateVars);
+  res.render('urls_index.ejs', templateVars);
 });
 
 // NEW
@@ -36,7 +36,7 @@ app.get('/urls/new', (req, res) => {
     urls: urlDatabase,
     username: req.cookies['username']
   };
-  res.render("urls_new", templateVars);
+  res.render("urls_new.ejs", templateVars);
 });
 
 app.post("/urls", (req, res) => {
