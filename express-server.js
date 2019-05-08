@@ -15,6 +15,20 @@ const urlDatabase = {
   '9sm5xK': 'http://www.google.com'
 };
 
+const users = {
+  'userRandomID': {
+    id: 'userRandomID',
+    email: 'user@example.com',
+    password: 'purple-monkey-dinosaur'
+  },
+ 'user2RandomID': {
+    id: 'user2RandomID',
+    email: 'user2@example.com',
+    password: 'dishwasher-funk'
+  }
+}
+
+//==================================================
 
 app.get('/', (req, res) => {
   res.redirect('/urls');
@@ -27,7 +41,7 @@ app.get('/urls', (req, res) => {
     urls: urlDatabase,
     username: req.cookies['username']
   };
-  res.render('urls_index.ejs', templateVars);
+  res.render('urls_index', templateVars);
 });
 
 // NEW
@@ -36,7 +50,7 @@ app.get('/urls/new', (req, res) => {
     urls: urlDatabase,
     username: req.cookies['username']
   };
-  res.render("urls_new.ejs", templateVars);
+  res.render("urls_new", templateVars);
 });
 
 app.post("/urls", (req, res) => {
@@ -45,6 +59,32 @@ app.post("/urls", (req, res) => {
   urlDatabase[shortURL] = longURL;
   res.redirect('urls');
 });
+
+
+// REGISTER
+app.get('/register', (req, res) => {
+  let templateVars = {
+    urls: urlDatabase,
+    users: users,
+    user_id: req.cookies['user_id']
+  };
+  res.render('urls_register', templateVars);
+});
+
+app.post('/register', (req, res) => {
+  // add new user object to the global object
+const user2RandomID = generateRandomString();
+const users = {
+  userRandomID: {
+    id: userRandomID,
+    email: req.body.email,
+    password: req.body.password
+    }
+  }
+  res.render('urls_register')
+
+})
+
 
 //SHOW -- display only the url I click on, alone on the page
 app.get('/urls/:shortURL', (req, res) => {
@@ -89,12 +129,15 @@ app.post('/edit/:shortURL', (req, res) => {
   res.redirect('/urls');
 });
 
+
+
 // DELETE
 app.post('/urls/:shortURL/delete', (req, res) => {
   console.log(req.params.shortURL);
   delete urlDatabase[req.params.shortURL];
   res.redirect('/urls');
 });
+
 
 // generate random short URL
 function generateRandomString() {
