@@ -61,30 +61,6 @@ app.post("/urls", (req, res) => {
 });
 
 
-// REGISTER
-app.get('/register', (req, res) => {
-  let templateVars = {
-    urls: urlDatabase,
-    users: users,
-    user_id: req.cookies['user_id']
-  };
-  res.render('urls_register', templateVars);
-});
-
-app.post('/register', (req, res) => {
-  // add new user object to the global object
-const user2RandomID = generateRandomString();
-const users = {
-  userRandomID: {
-    id: userRandomID,
-    email: req.body.email,
-    password: req.body.password
-    }
-  }
-  res.render('urls_register')
-
-})
-
 
 //SHOW -- display only the url I click on, alone on the page
 app.get('/urls/:shortURL', (req, res) => {
@@ -109,10 +85,44 @@ app.get('/u/:shortURL', (req, res) => {
   res.redirect(longURL);
 });
 
+
+// REGISTER
+app.get('/register', (req, res) => {
+  let templateVars = {
+    urls: urlDatabase,
+    users: users,
+    user_id: req.cookies['username']
+  };
+  res.render('urls_register', templateVars);
+});
+
+app.post('/register', (req, res) => {
+  // add new user object to the global object
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const id = generateRandomString();
+  users[id] = {
+     'id': id,
+     'email': email,
+     'password': password
+    };
+    res.cookie('user_id', id);
+    res.redirect('/urls');
+});
+
+
+
 //LOGIN
+app.get("/login", (req, res) => {
+  // res.cookie('user_id', req.body.id);
+  res.render("urls_login");
+});
+
 app.post('/login', (req, res) => {
   res.cookie('username', req.body.username);
-  res.redirect('/urls');
+  res.render('/urls_login');
 });
 
 // LOGOUT
@@ -128,7 +138,6 @@ app.post('/edit/:shortURL', (req, res) => {
   console.log(urlDatabase);
   res.redirect('/urls');
 });
-
 
 
 // DELETE
