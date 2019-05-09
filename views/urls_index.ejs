@@ -5,24 +5,20 @@
 <table>
   <% for (let url in urls) { %>
   <tr>
- <td><b><%=` ${url}:` %></b><a href= <%='/u/'+url %> ><%= ` ${urls[url].longURL}` %></a></td>
-  <td> &nbsp&nbsp&nbsp&nbsp </td>
-
-  <!-- edit -->
+    <td><b><%= `${url}:` %></b> <%= `${urls[url]}` %></td>
+  <!-- delete -->
   <td>
-    <form method="GET" class="inline-form" action=<%=`/urls/${url}`%>>
-      <button style="margin-right: 10px;" type="submit" class="btn btn-primary btn-sm">Edit</button>
-    </form>
+  <form method="POST" class="inline-form" action=<%=`/urls/${url}/delete`%>>
+    <a style="margin-left: 20px;" href= <%='/urls/'+url %> >Edit</a>
+
+
+    <button style="margin-left: 20px;" type="submit" class="btn btn-primary btn-sm">Delete</button>
+  </form>
   </td>
 
-<!-- delete -->
-  <td>
-    <form method="POST" class="inline-form" action=<%=`/urls/${url}/delete`%>>
-      <button type="submit" class="btn btn-primary btn-sm">Delete</button>
-    </form>
-  </td>
-</tr>
-
+  </tr>
+<td>
+</td>
 <% } %>
 </table>
 

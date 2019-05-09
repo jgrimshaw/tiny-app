@@ -21,16 +21,19 @@
 <hr>
 <!-- if the user is logged in display "Logged in as: + username" -->
 
-<% if(!username) { %>
+<% if(!user_id) { %>
   <form class="form-inline" action="/login" method="GET">
     <button type="submit" class="btn btn-primary btn-sm">Login</button>
   </form>
 <!-- <!if the user is not logged in display "this form below" -->
+
 <% } else { %>
-    <h5>Loged in as: <%= username %></h5>
+    <h5>Loged in as: <%= user[id]email %></h5>
      <form class="form-inline" action="/logout" method="POST">
     </form>
       <form class="form-inline" action="/register" method="GET">
     <button type="submit" class="btn btn-primary btn-sm">Logout</button>
   </form>
 <% } %>
+
+

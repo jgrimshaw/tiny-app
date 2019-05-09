@@ -1,19 +1,25 @@
 
 const PORT = 8080;
 const express = require('express');
+const cookieSession = require('cookie-session');
 const app = express();
-const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(cookieParser());
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['big#secret'],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
-//=================================================
+// ==================================================================
 
 const urlDatabase = {
-  'b2xVn2': 'http://www.lighthouselabs.ca',
-  '9sm5xK': 'http://www.google.com'
+  b6UTxQ: { longURL: "https://www.tsn.ca", userID: "aJ48lW" },
+  i3BoGr: { longURL: "https://www.google.ca", userID: "aJ48lW" }
 };
 
 const users = {
@@ -34,7 +40,6 @@ const users = {
 app.get('/', (req, res) => {
   res.redirect('/urls');
 });
-
 
 // INDEX -- show all urls
 app.get('/urls', (req, res) => {
@@ -61,8 +66,6 @@ app.post("/urls", (req, res) => {
   res.redirect('urls');
 });
 
-
-
 //SHOW -- display only the url I click on, alone on the page
 app.get('/urls/:shortURL', (req, res) => {
   const templateVars = {
@@ -85,7 +88,6 @@ app.get('/u/:shortURL', (req, res) => {
   const longURL = urlDatabase[req.params.shortURL];
   res.redirect(longURL);
 });
-
 
 // REGISTER
 app.get('/register', (req, res) => {
@@ -114,7 +116,6 @@ app.post('/register', (req, res) => {
 });
 
 
-
 //LOGIN
 app.get("/login", (req, res) => {
   // res.cookie('user_id', req.body.id);
@@ -126,12 +127,12 @@ app.post('/login', (req, res) => {
   res.render('/urls_login');
 });
 
+
 // LOGOUT
 app.post('/logout', (req, res) => {
   res.clearCookie('username');
   res.redirect('/urls');
 });
-
 
 // EDIT
 app.post('/edit/:shortURL', (req, res) => {
@@ -139,7 +140,6 @@ app.post('/edit/:shortURL', (req, res) => {
   console.log(urlDatabase);
   res.redirect('/urls');
 });
-
 
 // DELETE
 app.post('/urls/:shortURL/delete', (req, res) => {
@@ -157,16 +157,7 @@ function generateRandomString() {
 };
 
 
-
 //=====================================================
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
-
-
-
-
-
-
-
-
