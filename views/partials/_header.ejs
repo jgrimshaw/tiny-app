@@ -3,37 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Tiny App</title>
 
   <!-- Bootstrap CSS -->
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <title>TinyApp</title>
 </head>
 
 <body style="font-size:20px; padding:50px;">
-
-<h1>TinyApp</h1>
-<hr>
-<a href="/login">Login&nbsp&nbsp|&nbsp</a>
-<a href="/register">Register</a>
-
-
-<hr>
-<!-- if the user is logged in display "Logged in as: + username" -->
-
-<% if(!user_id) { %>
-  <form class="form-inline" action="/login" method="GET">
-    <button type="submit" class="btn btn-primary btn-sm">Login</button>
-  </form>
-<!-- <!if the user is not logged in display "this form below" -->
-
-<% } else { %>
-    <h5>Loged in as: <%= user[id]email %></h5>
-     <form class="form-inline" action="/logout" method="POST">
+    <!-- Add EJS code here -->
+    <h1>TinyApp</h1>
+    <hr>
+    <% if (username) { %>
+    <a href="/urls">URLS</a>&nbsp&nbsp|&nbsp&nbsp<a href="/urls/new/">Create New URL</a>
+      <form method="POST" action='/logout'>
+        <%= `Logged in as: ${username.email}` %>
+        <br>
+        <button style="margin-top: 20px;" class="btn btn-primary btn-sm" type="submit">Logout</button>
+        <hr>
+      </form>
+    <% } else { %>
+     <a href="/login">Login</a>&nbsp&nbsp|&nbsp&nbsp<a href="/register">Register</a>
+     <hr>
     </form>
-      <form class="form-inline" action="/register" method="GET">
-    <button type="submit" class="btn btn-primary btn-sm">Logout</button>
-  </form>
-<% } %>
-
-
+    <% } %>
