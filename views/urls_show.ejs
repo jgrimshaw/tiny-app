@@ -1,18 +1,11 @@
-<%- include partials/_header.ejs %>
+<%- include ./partials/_header.ejs %>
 
-<h1>TinyApp</h1>
-<a href="/urls/new">Create New TinyURL</a>
+<h3><%=`${shortURL}`%></h3><a href= <%='/u/'+shortURL %> ><%=`${longURL}`%></a>
 
-<h3>ShortURL: <b><%=shortURL%></b></h3>
-<hr>
-    <form class="form-inline" action="/urls/<%= shortURL %>" method="POST">
-      <div class="form-group mb-2">
-      <label for="URL"> URL:  </label>
-      <input class="form-control" size="35" type="url" name="newURL" value="<%=longURL%>" style="width: 300px; margin: 1em">
-      </div>
-      <button class="btn btn-primary btn-sm" type='submit'>Update</button>
-    </form>
-    <hr>
-
+  <form class="form-inline" action=<%=`/urls/${shortURL}`%> method="POST">
+  <label for="longURL">URL:</label>
+  <input class="form-control" type="text" name="newlongURL" value="<%=`${longURL}`%>" style="width: 300px; margin: 1em">
+  <button type="submit" class="btn btn-primary">Change URL</button>
+  </form>
 </body>
 </html>

@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title>TinyApp</title>
-</head>
+<%- include ./partials/_header.ejs %>
 
-<h1>TinyApp</h1>
-<hr>
-<a href="/login">Login&nbsp&nbsp|&nbsp</a>
-<a href="/register">Register</a>
+  <h3>Create Account</h3>
+  <form  action= <%=`/register`%> method="POST">
+  <label for="Email">Email:</label><input class="form-control" id="Email" type="email" name="email" placeholder="your email" style="width: 400px; margin-bottom: 20px">
 
-<body style="font-size:20px; padding:50px;">
-<h3 style="margin-top: 15px;">Create Account</h3>
+  <label for="password">Password: </label>
+  <input class="form-control" type="password" id="password" name="password" placeholder="create a password" style="width: 400px; margin-bottom: 20px">
 
-  <form action="/register" method="POST">
-    <div>
-      <label>Email: </label>
-      <input class="form-control" size="35" type="email" name="email" placeholder="Enter email" style="width: 350px;">
-    </div>
-    <br>
-    <div>
-      <label>Password:</label>
-      <input class="form-control" size="35" type="password" name="password" placeholder="create password" style="width: 350px;" >
-    </div>
-    <br>
-      <button class="btn btn-primary btn-sm" type='submit'>Register</button>
-    </form>
-
+  <button type="submit" class="btn btn-primary">Register</button>
+  </form>
 </body>
 </html>
