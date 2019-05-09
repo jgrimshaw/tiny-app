@@ -1,33 +1,34 @@
-<%- include ./partials/_header.ejs %>
 
+<% include partials/_header.ejs %>
 
-<h3>My URLs:</h3>
-<% if (username) { %>
-
+<h4>My URLs</h4>
 <table>
-    <% for (let url in urls) { %>
-<tr>
+  <% for (let url in urls) { %>
+  <tr>
  <td><b><%=` ${url}:` %></b><a href= <%='/u/'+url %> ><%= ` ${urls[url].longURL}` %></a></td>
   <td> &nbsp&nbsp&nbsp&nbsp </td>
+
+  <!-- edit -->
   <td>
     <form method="GET" class="inline-form" action=<%=`/urls/${url}`%>>
       <button style="margin-right: 10px;" type="submit" class="btn btn-primary btn-sm">Edit</button>
-  </form>
-</td>
+    </form>
+  </td>
 
-
-<td>
-  <form method="POST" class="inline-form" action=<%=`/urls/${url}/delete`%>>
+<!-- delete -->
+  <td>
+    <form method="POST" class="inline-form" action=<%=`/urls/${url}/delete`%>>
       <button type="submit" class="btn btn-primary btn-sm">Delete</button>
-  </form>
-</td>
+    </form>
+  </td>
 </tr>
-    <%}%>
-    <% } else { %>
-    <p>Please log in or Register</p>
-    <% } %>
+
+<% } %>
 </table>
+
 
 
 </body>
 </html>
+
+

@@ -1,3 +1,4 @@
+
 const PORT = 8080;
 const express = require('express');
 const app = express();
@@ -125,10 +126,6 @@ app.post('/login', (req, res) => {
   res.render('/urls_login');
 });
 
-
-
-
-
 // LOGOUT
 app.post('/logout', (req, res) => {
   res.clearCookie('username');
@@ -165,4 +162,11 @@ function generateRandomString() {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
+
+
+
+
+
+
+
 
