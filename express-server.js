@@ -72,7 +72,7 @@ app.get('/urls/:shortURL', (req, res) => {
 
 // send user to the long url: ex.lighthouselabs.ca by typing in the browser --  http://localhost:8080/u/b2xVn2
 app.get('/u/:shortURL', (req, res) => {
-  const longURL = urlDatabase[req.params.shortURL];
+  const longURL = urlDatabase[req.params.shortURL].longURL;
   res.redirect(longURL);
 });
 

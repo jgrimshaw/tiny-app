@@ -6,7 +6,7 @@
 <table>
     <% for (let url in urls) { %>
 <tr>
- <td><b><%=` ${url}:` %></b><a href= <%='/u/'+ url %> ><%= ` ${urls[url].longURL}` %></a></td>
+ <td><b><%=` ${url}:` %></b><a href=<%='/u/'+ url %> ><%= `  ${urls[url].longURL}` %>  </a></td>
   <td> &nbsp&nbsp&nbsp&nbsp </td>
   <td>
     <form method="GET" class="inline-form" action=<%=`/urls/${url}`%>>
